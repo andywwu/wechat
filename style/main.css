@@ -6,10 +6,12 @@ body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legen
 i,em{font-style:normal}
 ol,ul,li{list-style:none; margin:0; padding:0}
 input,select,button,h1,h2,h3,h4,h5,h6{font-size:100%;font-family:inherit}
-body{margin:0 auto; min-width:320px; max-width:640px; background:#efefef;font-size:14px;font-family:Helvetica,STHeiti STXihei, Microsoft JhengHei, Microsoft YaHei, Arial;line-height:1.5;color:#333;-webkit-text-size-adjust:100% !important;-webkit-user-select:none;user-select:none;}
+body{margin:0 auto; min-width:320px; max-width:640px; background:#efefef;font-size:14px;line-height:1.5;color:#333;-webkit-text-size-adjust:100% !important;-webkit-user-select:none;user-select:none;}
 img{ width:100%; height:auto;border:none; interpolation-mode: bicubic;border:0;vertical-align:top}
 
-.wrap {
+
+.distance{margin-bottom: 10px;}
+.wrap-content {
     background: #F4F4F4;
     height: 100%;
     width: 100%;
@@ -28,17 +30,9 @@ img{ width:100%; height:auto;border:none; interpolation-mode: bicubic;border:0;v
     visibility: hidden;
     clear: both;
 }
-.view-head{
-	width: 80%;
-	height: 70px;
-	border:1px solid rgba(255, 255, 255, .7);
-	border-radius:0 7px 7px 0;
-	border-left: none;
-	padding: 0 15px;
-	margin-bottom: 20px;
-}
+
 .view-head .iconfont{
-  font-size: 50px;
+  font-size: 60px;
 }
 .data-statistics {
     width: 60%;
@@ -72,12 +66,26 @@ img{ width:100%; height:auto;border:none; interpolation-mode: bicubic;border:0;v
 
 .data-statistics span {
     display: block;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .data-statistics .num {
     font-size: 20px;
     font-style: normal;
+}
+.active-border {
+    border-color: #e5e5e5!important;
+}
+.grid-item .iconfont{
+  font-size: 56px!important;
+}
+.edit-name{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+.edit-name .iconfont{
+  font-size: 12px!important;
 }
 @font-face {
   font-family: 'iconfont';  /* project id 365819 */
