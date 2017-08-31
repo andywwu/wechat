@@ -1,0 +1,722 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+  <meta name="format-detection" content="telephone=no">
+  <link type="text/css" rel="stylesheet" href="./style/style2.css">
+  <link type="text/css" rel="stylesheet" href="./style/mobiscroll.2.13.2.css"/>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="./mobiscroll.2.13.2.js"></script>
+  <title>时间设置</title>
+</head>
+<body>
+  <!--关机状态-->
+  <section id="page1" style="display:block">
+    <div id="taskS"></div>
+    <div class="timetext" id="no_task"><img style="width:40%; display:block; margin:auto; margin-bottom:20px" src="images/no_time.png"><p style="font-size: 20px; color: #505050">暂无定时数据<p><span>点击下面的“＋”添加定时</span></div>
+    <div class="ht60"></div>
+    <footer>
+    	<!-- <button onClick="tianjia()" style="width:86%; border-radius: 50%">+</button> -->
+      <button class="add_btn" onClick="tianjia()">+</button>
+      <p>添加定时</p>
+    </footer>
+  </section>
+  <!---->
+  <section id="page2" style="display:none">
+    <div class="timebox">
+      <h3>时间设置</h3>
+      <div class="tim_sz">
+        <input type="text" value="11:11" name="appTime" id="appTime" class="time" disabled="value" />
+      </div>
+    </div>
+    <div class="timebox">
+      <h3 onClick="cfsz()">重复 <p id="week_type">每天</p><em></em></h3>
+    </div>
+    <div class="timebox">
+      <h3 onClick="mcsz()">操作<p id="renwuName">新任务</p><em></em></h3>
+    </div>
+    <div class="ht60"></div>
+    <footer>
+    	<!-- <button onClick="fanhui1()">取消</button> -->
+    	<button onClick="save_all_make()">保存</button>
+    </footer>
+  </section>
+  <section id="page3" style="display:none">
+    <div class="timebox">
+      <h3>重复 <div class="btn off" id="time1"><span></span></div></h3>
+      <div class="timing_con" id="time_con1">
+        <em class="text">执行一次</em>
+      </div>
+      <ul class="radio_box" style="display:none" id="time_con2">
+        <li>
+          <input id="radio_1" class="radio" name="radio" type="radio" >
+          <label for="radio_1" class="trigger">每天<i></i></label> 
+        </li> 
+        <li>
+          <input id="radio_2" class="radio" name="radio" type="radio" >
+          <label for="radio_2" class="trigger">工作日<i></i></label> 
+        </li> 
+        <li>
+          <input id="radio_3" class="radio" name="radio" type="radio">
+          <label for="radio_3" class="trigger">自定义<i></i></label> 
+        </li> 
+      </ul>
+      <ul class="radio_box hi_de" style="display:none" id="time_con3">
+        <li>
+          <input id="radio_mr_1" class="radio" name="radio_mr" type="checkbox" >
+          <label for="radio_mr_1" class="trigger">周一<i></i></label> 
+        </li> 
+        <li>
+          <input id="radio_mr_2" class="radio" name="radio_mr" type="checkbox" >
+          <label for="radio_mr_2" class="trigger">周二<i></i></label> 
+        </li> 
+        <li>
+          <input id="radio_mr_3" class="radio" name="radio_mr" type="checkbox">
+          <label for="radio_mr_3" class="trigger">周三<i></i></label> 
+        </li> 
+        <li>
+          <input id="radio_mr_4" class="radio" name="radio_mr" type="checkbox">
+          <label for="radio_mr_4" class="trigger">周四<i></i></label> 
+        </li> 
+        <li>
+          <input id="radio_mr_5" class="radio" name="radio_mr" type="checkbox">
+          <label for="radio_mr_5" class="trigger">周五<i></i></label> 
+        </li> 
+        <li>
+          <input id="radio_mr_6" class="radio" name="radio_mr" type="checkbox">
+          <label for="radio_mr_6" class="trigger">周六<i></i></label> 
+        </li> 
+        <li>
+          <input id="radio_mr_7" class="radio" name="radio_mr" type="checkbox">
+          <label for="radio_mr_7" class="trigger">周日<i></i></label> 
+        </li> 
+      </ul>
+    </div>
+    <div class="ht60"></div>
+    <footer>
+      <button onClick="fanhui2()">返回</button>
+      <button onClick="save_week()">确定</button>
+    </footer>
+  </section>
+  <section id="page4" style="display:none">
+  	<div class="timebox">
+      <ul class="radio_box">
+        <li>
+          <input id="radio_ts_1" class="radio" name="radio_ts" type="radio" >
+          <label for="radio_ts_1" class="trigger">均通知<i></i></label> 
+        </li> 
+        <li>
+          <input id="radio_ts_2" class="radio" name="radio_ts" type="radio" >
+          <label for="radio_ts_2" class="trigger">仅执行失败通知<i></i></label> 
+        </li> 
+        <li>
+          <input id="radio_ts_3" class="radio" name="radio_ts" type="radio">
+          <label for="radio_ts_3" class="trigger">不通知<i></i></label> 
+        </li> 
+      </ul>
+    </div>
+    <div class="ht60"></div>
+    <footer>
+      <button onClick="fanhui3()">返回</button>
+      <button >确定</button>
+    </footer>
+  </section>
+
+  <section id="page5" style="display:none">
+  	<div class="timebox">
+      <h3 style="display:none;"><input type="text" id="inpt_renwu" class="inp" value="插座开启"> <a class="del">删除</a></h3>  
+      <ul class="radio_box"  id="renwu_list">
+        <li>
+          <input id="renwu_1" class="radio" name="radio" type="radio" >
+          <label for="renwu_1" class="trigger">一键开启<i></i></label> 
+        </li> 
+        <li>
+          <input id="renwu_2" class="radio" name="radio" type="radio" >
+          <label for="renwu_2" class="trigger">一键关闭<i></i></label> 
+        </li> 
+      </ul>
+    </div>
+    <div class="ht60"></div>
+    <footer>
+      <button onClick="fanhui4()">返回</button>
+      <button onClick="save_renwu()">确定</button>
+    </footer>
+  </section>
+  <div class="mask" style="display:none"></div>
+  <div style="display:none">
+    <input type="hidden" id="week_str"  value="_*_*_*_*"/>
+    <input type="hidden" id="task_sid"  value=""/>
+  </div>
+</body>
+</html>
+<script>
+  var streas_arr=[];
+  var feedid;
+  var addOrUpdate=true;
+//添加定时
+  function addTask(){
+    var appTime_dingshi=$("#appTime").val();//定时时间
+    var arr_t=appTime_dingshi.split(':');
+    var express_str=parseInt(arr_t[1])+"_"+parseInt(arr_t[0])+$("#week_str").val();
+    var  app_time = getFormatedTime(); //定时时间
+    console.log("app_time:"+app_time);
+    var timed_task = {};
+    timed_task.app_time = app_time;
+    timed_task.task_name = $("#renwuName").text();
+    timed_task.task_time_express =express_str;
+    console.log("addTask feed_id: 145147038730805692");
+    timed_task.task_express = [{"feed_id": feedid,
+    "stream":streas_arr}];
+    timed_task.task_type ='1';
+    timed_task = { "timed_task": JSON.stringify(timed_task) };
+    console.log("timed_task---->");
+    console.log(timed_task);
+    console.log("timed_task----<");
+    getAlltask();
+    fanhui1();
+  }
+//通过feedid  获取全部定时
+  function getAlltask(){
+    var str_stask="";
+    console.log("getAlltask feedid: "+feedid);
+    var feed_ids = { feed_ids: "[" + feedid + "]" };
+    $("#taskS").empty();
+    $("#taskS").append(str_stask);
+    $("#no_task").hide();
+  };
+//修改定时
+//删除定时
+  function deleteTask(bg,task) {
+    var commnd = { "task_ids": "["+task+"]" };
+  }
+//启用停用
+function to_or_stop(num,task,callback){
+  var parmm;
+  if(num=="on"){
+    parmm= {"task_ids":"["+task+"]" , "control":1};
+  }else  if(num=="off"){
+    parmm= {"task_ids":"["+task+"]" , "control":0};
+  }
+  
+  JDSMART.util.post("service/controlTimedTask", parmm,callback);
+}
+//获取当前时间
+function getFormatedTime() {
+  return new Date().Format("yyyy-MM-dd hh:mm");
+}
+
+//判断定时类型
+
+//解析定时类型
+  function get_expreee(typ){
+    var s = typ.trim().split('_');
+    var t = new Object();
+    t.minute = s[0] < 10 ? '0' + s[0] : s[0];
+    t.hour = s[1] < 10 ? '0' + s[1] : s[1];
+    t.day = s[2];
+    t.april = s[3];
+    t.week = s[4];
+    t.year = s[5];
+    t.type = null;
+    if (t.day == '*' && t.april == '*' && t.week == '*' && t.year == '*') {
+    t.type = 4;
+    //return t;//4 每天
+    } else if (t.april == '*' && t.week == '*' && t.year == '*') {
+      t.type = 3;
+    //return t;//3;//每月 几号
+    } else if (t.day == '*' && t.april == '*' && t.year == '*') {
+      t.type = 2;
+    } else {
+      t.type = 1;
+    }
+    return t;
+  }
+//时间格式化
+Date.prototype.Format = function (fmt) { //author: meizz
+  var o = {
+    "M+": this.getMonth() + 1, //月份
+    "d+": this.getDate(), //日
+    "h+": this.getHours(), //小时
+    "m+": this.getMinutes(), //分
+    "s+": this.getSeconds(), //秒
+    "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+    "S": this.getMilliseconds() //毫秒
+  };
+  if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+  for (var k in o)
+  if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+  return fmt;
+}
+/*
+$(".btn").on("click",function(e){
+	if($(this).attr("class").indexOf("on") >= 0){
+	   alert($(this).attr("name"));
+		$(this).attr("class","btn off");
+	}
+	else{
+	     alert($(this).attr("name"));
+		$(this).attr("class","btn on");
+	}
+});
+*/
+//启用停用开关按钮
+function onclc(bg,task){
+ if($(bg).attr("class").indexOf("on") >= 0){
+   to_or_stop("off",task,function(suc){
+    $(bg).attr("class","btn off");
+  });
+ }
+ else{
+   to_or_stop("on",task,function(suc){
+     $(bg).attr("class","btn on");
+   });
+ }
+}
+
+//初始化任务设置
+  function initShow(){
+    addOrUpdate=true;
+    var ddaa=new Date();
+    var hs= ddaa.getHours();
+    var ms= ddaa.getMinutes();
+    if( parseInt(ms)<10){
+      ms="0"+ms;
+    }
+    if( parseInt(hs)<10){
+      hs="0"+hs;
+    }
+    $("#appTime").val(hs+":"+ms);
+    $('#appTime').mobiscroll().time({
+      theme: 'android-ics light', //皮肤样式
+      display: 'inline', //显示方式 Inline
+      mode: 'scroller', //日期选择模式
+      lang: 'zh',
+      //  defaultValue: new Date(new Date().setHours(00, 02, 00, 0)),
+      minDate: new Date(new Date().setHours(00, 00, 0, 0)),
+      maxDate: new Date(new Date().setHours(23, 59, 0, 0)),
+      setText: '', //确认按钮名称
+      cancelText: '',//取消按钮名籍我
+      showLabel:"true",//
+      hourText: "时",//
+      minuteText:"分",//
+    });
+    $("#week_type").text("每天");
+    $("#week_str").text("_*_*_*_*");
+    $("#renwuName").text("新任务"); 
+    streas_arr=[];
+  }
+//修改设置
+function updateShow(task){
+ $("#task_sid").val(task);
+ addOrUpdate=false;
+ var commnd = { "task_ids": "["+task+"]" };
+ JDSMART.util.post("service/getTimedTaskByTaskIds", commnd, function(suc){
+   var pasd=suc.result[0];
+   var ted=get_expreee(pasd.task_time_express);
+   var ted_str="";
+   if(ted.type==1){
+     ted_str="执行一次";
+   }else if(ted.type==4){
+     ted_str="每天";
+   }else if(ted.type==2){
+    ted_str="";
+    var arr_week=ted.week.split(',');
+    for(var j=0;j<arr_week.length;j++){
+      if(arr_week[j]==1){
+       ted_str=ted_str+"周一 ";
+     }else if(arr_week[j]==2){
+      ted_str=ted_str+"周二 ";
+    }else if(arr_week[j]==3){
+      ted_str=ted_str+"周三 ";
+    }else if(arr_week[j]==4){
+      ted_str=ted_str+"周四 ";
+    }else if(arr_week[j]==5){
+      ted_str=ted_str+"周五 ";
+    }else if(arr_week[j]==6){
+      ted_str=ted_str+"周六 ";
+    }else if(arr_week[j]==7){
+      ted_str=ted_str+"周日 ";
+    }
+  }
+}
+$("#week_type").text(ted_str);
+$("#appTime").val(ted.hour+":"+ted.minute);
+
+$('#appTime').mobiscroll().time({
+  theme: 'android-ics light', //皮肤样式
+  display: 'inline', //显示方式 Inline
+  mode: 'scroller', //日期选择模式
+  lang: 'zh',
+//  defaultValue: new Date(new Date().setHours(00, 02, 00, 0)),
+  minDate: new Date(new Date().setHours(00, 00, 0, 0)),
+  maxDate: new Date(new Date().setHours(23, 59, 0, 0)),
+  setText: '', //确认按钮名称
+  cancelText: '',//取消按钮名籍我
+  showLabel:"true",//
+  hourText: "时",//
+  minuteText:"分",//
+});
+$("#week_str").text("_"+ted.day+"_"+ted.april+"_"+ted.week+"_"+ted.year);
+$("#renwuName").text(pasd.task_name); 
+streas_arr=[{"stream_id":"work","stream_value":pasd.task_express[0].stream[0].work}];
+$("#page1").hide();
+$("#page2").show();
+});
+}
+//
+function tianjia(){
+	$("#page1").hide();
+	$("#page2").show();
+	initShow();
+}	
+
+function fanhui1(){
+	$("#page2").hide();
+	$("#page1").show();
+}	
+function fanhui2(){
+	$("#page3").hide();
+	$("#page2").show();
+}	
+function fanhui3(){
+	$("#page4").hide();
+	$("#page2").show();
+}
+function fanhui4(){
+	$("#page5").hide();
+	$("#page2").show();
+}	
+
+function cfsz(){
+	$("#page2").hide();
+	$("#page3").show();
+	week_xs();
+}	
+function mcsz(){
+  task_xs();
+  $("#page2").hide();
+  $("#page5").show();
+}	
+function tzsz(){
+	$("#page2").hide();
+	$("#page4").show();
+}	
+
+
+//
+var flag = true;
+$("#time1").on('click',function(){
+  if($(this).attr("class").indexOf("on") >= 0){
+    $(this).attr("class","btn off"); 
+    colse_week();		  
+  }else{
+    $(this).attr("class","btn on");
+  }
+  var flag_1 = true;
+  if(flag_1){
+   $("#time_con1,#time_con2").slideToggle();
+   flag_1 = false;
+   setTimeout(function(){flag_1 = true;
+   }, 500);
+ }
+});
+//
+
+$("#radio_3").on('click',function(){
+ if($("#time_con3").attr("class").indexOf("hi_de") >= 0){
+   if(flag){
+     $("#time_con3").slideToggle();
+     flag = false;
+     setTimeout(function(){flag = true;
+     }, 500);
+   }
+   $("#time_con3").attr("class","radio_box sh_ow");   
+ }else{
+  if(flag){
+   $("#time_con3").slideToggle();
+   flag = false;
+   setTimeout(function(){flag = true;
+   }, 500);
+ }
+ $("#time_con3").attr("class","radio_box hi_de");
+
+}
+});
+
+
+$("#radio_2").on('click',function(){
+ colse_week();
+});
+
+$("#radio_1").on('click',function(){
+ colse_week();
+});
+$("#time_kg").on('click',function(){
+ if(flag){
+   $("#time_kgcon").slideToggle();
+   flag = false;
+   setTimeout(function(){flag = true;
+   }, 500);
+ }
+})
+//
+//
+$("#time_01").on("click",function(e){
+	if($(this).attr("class").indexOf("on") >= 0){
+		$("#time_t_01").attr("class","");
+	}
+	else{
+		$("#time_t_01").attr("class","c999");
+	}
+});
+//
+$("#time_02").on("click",function(e){
+	if($(this).attr("class").indexOf("on") >= 0){
+		$("#time_t_02").attr("class","");
+	}
+	else{
+		$("#time_t_02").attr("class","c999");
+	}
+});
+
+//关闭星期
+function colse_week(){
+  if($("#time_con3").attr("class").indexOf("sh_ow") >= 0){
+    if(flag){
+     $("#time_con3").slideToggle();
+     flag = false;
+     setTimeout(function(){flag = true;
+     }, 500);
+   }
+   $("#time_con3").attr("class","radio_box hi_de");
+ } 
+}
+//重复出事话
+function week_xs(){
+    //获取 type
+    var type_w=$("#week_type").text();
+
+    if(type_w=="每天"){
+	   //应显示
+     $(".radio").removeAttr("checked");
+     $("#time1").attr("class","btn on"); 
+     $("#time_con1").hide();
+     $("#time_con2").show();
+     $("#time_con3").attr("class","radio_box hi_de");
+	    //$("#time_con3").attr("class","radio_box sh_ow"); 
+     $("#radio_1").attr("checked","checked");
+     $("#time_con3").hide(); 
+   }else if(type_w=="执行一次"){
+    $(".radio").removeAttr("checked");
+    $("#time1").attr("class","btn off"); 
+    $("#time_con1").show();
+    $("#time_con2").hide();
+    $("#time_con3").attr("class","radio_box hi_de");
+    $("#time_con3").hide(); 
+
+  }else if(type_w=="工作日"){
+    $(".radio").removeAttr("checked");
+    $("#time1").attr("class","btn on"); 
+    $("#time_con1").hide();
+    $("#time_con2").show();
+    $("#time_con3").attr("class","radio_box hi_de");
+    //$("#time_con3").attr("class","radio_box sh_ow"); 
+    $("#radio_2").attr("checked","checked");
+    $("#time_con3").hide(); 
+  }else{
+    $(".radio").removeAttr("checked");
+    $("#time1").attr("class","btn on"); 
+    $("#time_con1").hide();
+    $("#time_con2").show();
+    $("#time_con3").attr("class","radio_box sh_ow"); 
+    $("#radio_3").attr("checked","checked");
+    var taaa=type_w.split(' ');
+    for(var i=0;i<taaa.length;i++){
+      if(taaa[i]=="周一"){
+       $("#radio_mr_1").attr("checked","checked");
+     }else if(taaa[i]=="周二"){
+       $("#radio_mr_2").attr("checked","checked");
+     }else if(taaa[i]=="周三"){
+      $("#radio_mr_3").attr("checked","checked");
+    }else if(taaa[i]=="周四"){
+      $("#radio_mr_4").attr("checked","checked");
+    }else if(taaa[i]=="周五"){
+      $("#radio_mr_5").attr("checked","checked");
+    }else if(taaa[i]=="周六"){
+      $("#radio_mr_6").attr("checked","checked");
+    }else if(taaa[i]=="周日"){
+      $("#radio_mr_7").attr("checked","checked");
+    }
+  }
+  $("#time_con3").show(); 
+}
+	//根据type显示不同的显示
+}
+
+//操作初始化
+function task_xs(){
+  var ta_dd=$("#renwuName").text();
+  if(ta_dd=="一键开启"){
+    $(".radio").removeAttr("checked");
+    $("#renwu_1").attr("checked","checked");
+  }else if(ta_dd=="一键关闭"){
+   $(".radio").removeAttr("checked");
+   $("#renwu_2").attr("checked","checked");
+ }else{
+  $(".radio").removeAttr("checked");
+}
+}
+
+//保存执行方式
+function save_week(){
+  if($("#time1").attr("class").indexOf("on") >= 0){
+   var radio_id=$('#time_con2 input:radio[name="radio"]:checked').attr("id");
+   if(radio_id=="radio_1"){
+    $("#week_str").val("_*_*_*_*");
+    $("#week_type").text("每天");
+		  //每天
+		}else if(radio_id=="radio_2"){
+		  //工作日
+     $("#week_type").text("工作日");
+     $("#week_str").val("_*_*_1,2,3,4,5_*");
+   }else if(radio_id=="radio_3"){
+     var  radio_mr_str=[];
+     var   radio_mr_arr=[];
+     $('#time_con3 input:checkbox[name="radio_mr"]:checked').each(function(){
+       var radio_id_mr=$(this).attr("id");
+       if(radio_id_mr=="radio_mr_1"){
+        radio_mr_str.push(1);
+      }else if(radio_id_mr=="radio_mr_2"){
+        radio_mr_str.push(2);
+      }else if(radio_id_mr=="radio_mr_3"){
+        radio_mr_str.push(3);
+      }else if(radio_id_mr=="radio_mr_4"){
+        radio_mr_str.push(4);
+      }else if(radio_id_mr=="radio_mr_5"){
+        radio_mr_str.push(5);
+      }else if(radio_id_mr=="radio_mr_6"){
+        radio_mr_str.push(6);
+      }else if(radio_id_mr=="radio_mr_7"){
+        radio_mr_str.push(7);
+      }
+    });
+     if(radio_mr_str.length>0){
+      radio_mr_str = radio_mr_str.sort(function(a,b){return a-b;});
+      for(var i=0;i<radio_mr_str.length;i++){
+       if(radio_mr_str[i]==1){
+         radio_mr_arr.push("周一");
+       }else if(radio_mr_str[i]==2){
+         radio_mr_arr.push("周二");
+       } if(radio_mr_str[i]==3){
+         radio_mr_arr.push("周三");
+       } if(radio_mr_str[i]==4){
+         radio_mr_arr.push("周四");
+       } if(radio_mr_str[i]==5){
+         radio_mr_arr.push("周五");
+       } if(radio_mr_str[i]==6){
+         radio_mr_arr.push("周六");
+       } if(radio_mr_str[i]==7){
+         radio_mr_arr.push("周日");
+       }
+     }
+     $("#week_str").val("_*_*_"+radio_mr_str.join(',')+"_*");
+     if($("#week_str").val()=="_*_*_1,2,3,4,5,6,7_*"){
+       $("#week_type").text("每天");
+       $("#week_str").val("_*_*_*_*");
+     }else if($("#week_str").val()=="_*_*_1,2,3,4,5_*"){
+       $("#week_type").text("工作日");
+     }else{
+       $("#week_type").text(radio_mr_arr.join(' '));
+     }
+   }else{
+     alert("请选择星期");
+     return ;
+   }
+
+ }
+}else{
+	//执行一次
+	var new_time=new Date();
+	$("#week_str").val("_"+new_time.getDate()+"_"+(new_time.getMonth()+1)+"_*_"+new_time.getFullYear());
+  $("#week_type").text("执行一次");
+}
+$("#page3").hide();
+$("#page2").show();
+}
+
+$('#renwu_list input:radio[name="radio"]').on("click",function(){
+  var rwId=$(this).attr("id");
+  if(rwId=="renwu_1"){
+    $("#inpt_renwu").val("一键开启");
+  }else if(rwId=="renwu_2"){
+    $("#inpt_renwu").val("一键关闭");
+  }
+});
+
+//保存任务
+function save_renwu(){
+
+ var renwu_id=$('#renwu_list input:radio[name="radio"]:checked').attr("id");
+ if(renwu_id=="renwu_1"){
+  streas_arr=[{"stream_id":"work","stream_value":"1"}];
+
+}else if(renwu_id=="renwu_2"){
+ streas_arr=[{"stream_id":"work","stream_value":"0"}];
+ 
+}
+$("#renwuName").text($("#inpt_renwu").val());
+
+$("#page5").hide();
+$("#page2").show();
+}
+//保存任务=
+function save_all_make(){
+  if(streas_arr.length==0){
+   alert("请选择任务");
+ }else{
+   if(addOrUpdate){
+     addTask();
+   }else{
+    modifyTask();
+  }
+}
+}
+//更新
+function modifyTask(){
+      var  appTime_dingshi=$("#appTime").val();//定时时间
+      var arr_t=appTime_dingshi.split(':');
+      var express_str=parseInt(arr_t[1])+"_"+parseInt(arr_t[0])+$("#week_str").val();
+      var cmd = {
+        "timed_task": {
+          "app_time": getFormatedTime(),
+          "task_id":$("#task_sid").val(),
+          "task_name": $("#renwuName").text(),
+          "task_time_express": express_str,
+          "task_express": [
+          {
+            "feed_id": feedid,
+            "stream": streas_arr
+          }
+          ],
+          "task_type": 1
+        }
+      }
+      JDSMART.util.post("service/modifyTimedTask", cmd, function (res) {
+        getAlltask();
+        fanhui1();
+      });
+    };
+
+    function getQry(key) {
+    var search = location.search.slice(1); //得到get方式提交的查询字符串 
+    var arr = search.split("&");
+    for (var i = 0; i < arr.length; i++) {
+      var ar = arr[i].split("=");
+      if (ar[0] == key) {
+        return ar[1];
+      }
+    }
+  }
+</script>
+

@@ -87,6 +87,41 @@ img{ width:100%; height:auto;border:none; interpolation-mode: bicubic;border:0;v
 .edit-name .iconfont{
   font-size: 12px!important;
 }
+.confirmWrap .cfm_title {
+    text-align: center;
+    font-size: 20px;
+}
+/*弹窗*/
+.confirmWrap{
+  background: #f5f5f5;
+}
+.confirmWrap .cfm_content {
+    padding: 0px 0;
+    font-size: 12px;
+}
+.cfm_content {
+    font-size: 14px;
+    text-align: center!important;
+}
+.confirmWrap .cfm_content p {
+  color: #999;
+}
+.inp{
+  margin-top: 20px;
+  height: 28px;
+  width: 210px;
+  outline: none;
+  border: 1px solid #d5d5d5;
+  caret-color: #d5d5d5;
+  font-size: 14px;
+}
+.cfm_btnWrap{
+  color: #0076ff;
+  font-size: 16px;
+}
+/*定时页面*/
+.timetext{ text-align:center; padding:50% 0; line-height:24px;}
+.timetext span{ color:#666}
 @font-face {
   font-family: 'iconfont';  /* project id 365819 */
   src: url('//at.alicdn.com/t/font_j727ogxssk7yzaor.eot');
