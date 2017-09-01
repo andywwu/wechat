@@ -1,0 +1,24 @@
+.ui_wrap{
+	flex-wrap: nowrap;
+}
+.device_name{
+	display: block;
+    font-size: 1.4rem;
+}
+.mode_inner{
+	position: relative;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 0 solid #e5e5e5;
+/*    border-right-width: 1px;
+    border-bottom-width: 1px;*/
+    color: #a6a6a6;
+    background: #ffffff!important;
+    text-align: center;
+}
+.mode_inner .iconfont{
+	font-size: 56px;
+}
+.active-item span{
+	color: #6bc800;
+}
